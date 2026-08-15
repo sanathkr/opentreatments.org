@@ -1,22 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
-import Section from '../components/Section.astro';
-import PersonCard from '../components/PersonCard.astro';
+import PersonRow from '../components/PersonRow.astro';
 import { advisors } from '../data/people';
 ---
 
 <Base title="Advisors" description="Meet the advisors to the Open Treatments Foundation.">
-  <Section theme="light">
-    <h1 class="text-center text-4xl md:text-5xl">Meet our Advisors</h1>
+  <section class="bg-cream py-14 md:py-20">
+    <div class="mx-auto max-w-[1500px] px-[3%]">
+      <h1 class="type-section text-center">Meet our Advisors</h1>
+    </div>
+  </section>
 
-    <ul class="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-8 lg:grid-cols-4">
-      {
-        advisors.map((person) => (
-          <li>
-            <PersonCard person={person} as="h2" />
-          </li>
-        ))
-      }
-    </ul>
-  </Section>
+  <section class="bg-white py-14 md:py-20">
+    <div class="mx-auto max-w-[1500px] space-y-16 px-[3%] md:space-y-24">
+      {advisors.map((person, i) => <PersonRow person={person} index={i} />)}
+    </div>
+  </section>
 </Base>

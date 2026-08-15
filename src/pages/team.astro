@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Section from '../components/Section.astro';
 import PersonCard from '../components/PersonCard.astro';
 import { teamGroups } from '../data/people';
 ---
@@ -9,27 +8,29 @@ import { teamGroups } from '../data/people';
   title="Team"
   description="Our team is a group of passionate people who strive to empower the rare disease community."
 >
-  <Section theme="light">
-    <h1 class="text-center text-4xl md:text-5xl">Meet Our Team</h1>
-    <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed">
-      Our team is a group of passionate people who strive to empower the rare disease community.
-    </p>
+  <section class="bg-cream py-14 md:py-20">
+    <div class="mx-auto max-w-[1500px] px-[3%]">
+      <h1 class="type-section text-center">Meet Our Team</h1>
+      <p class="type-intro mx-auto mt-6 max-w-3xl text-center">
+        Our team is a group of passionate people who strive to empower the rare disease community.
+      </p>
 
-    <div class="mt-16 space-y-20">
-      {
-        teamGroups.map((group) => (
-          <div>
-            <h2 class="text-center text-3xl">{group.heading}</h2>
-            <ul class="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
-              {group.members.map((person) => (
-                <li>
-                  <PersonCard person={person} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      <div class="mt-16 space-y-20">
+        {
+          teamGroups.map((group) => (
+            <div>
+              <h2 class="type-display text-center">{group.heading}</h2>
+              <ul class="mt-10 grid grid-cols-2 gap-x-[2.7%] gap-y-12 lg:grid-cols-4">
+                {group.members.map((person) => (
+                  <li>
+                    <PersonCard person={person} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
     </div>
-  </Section>
+  </section>
 </Base>

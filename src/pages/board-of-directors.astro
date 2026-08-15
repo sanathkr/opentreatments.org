@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Section from '../components/Section.astro';
-import PersonCard from '../components/PersonCard.astro';
+import PersonRow from '../components/PersonRow.astro';
 import { board } from '../data/people';
 ---
 
@@ -9,11 +8,15 @@ import { board } from '../data/people';
   title="Board of Directors"
   description="Meet the Board of Directors of the Open Treatments Foundation."
 >
-  <Section theme="light">
-    <h1 class="text-center text-4xl md:text-5xl">Meet our Board of Directors</h1>
-
-    <div class="mt-16 space-y-16 md:mt-20 md:space-y-20">
-      {board.map((person) => <PersonCard person={person} variant="full" as="h2" />)}
+  <section class="bg-cream py-14 md:py-20">
+    <div class="mx-auto max-w-[1500px] px-[3%]">
+      <h1 class="type-section text-center">Meet our Board of Directors</h1>
     </div>
-  </Section>
+  </section>
+
+  <section class="bg-white py-14 md:py-20">
+    <div class="mx-auto max-w-[1500px] space-y-16 px-[3%] md:space-y-24">
+      {board.map((person, i) => <PersonRow person={person} index={i} />)}
+    </div>
+  </section>
 </Base>

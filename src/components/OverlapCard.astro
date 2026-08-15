@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/**
+ * The Squarespace "image card" band: a photo on one side and a solid text card
+ * on the other that overlaps it. Measured off the live site — the card and the
+ * image are each 52% wide, inset 3% from their outer edge, so they overlap by
+ * about 7% of the viewport in the middle.
+ */
+interface Props {
+  image: ImageMetadata;
+  alt?: string;
+  /** Which side the text card sits on. The image takes the other side. */
+  cardSide?: 'left' | 'right';
+  cardBg?: 'white' | 'cream';
+  /** Background of the full-width band behind both. */
+  theme?: 'slate' | 'white' | 'light';
+}
+
+const { image, alt = '', cardSide = 'left', cardBg = 'white', theme = 'slate' } = Astro.props;
+
+const bands = {
+  slate: 'bg-slate',
+  white: 'bg-white',
+  light: 'bg-cream',
+};
+
+const cards = {
+  white: 'bg-white text-ink',
+  cream: 'bg-cream text-ink',
+};
+
+const cardPos =
+  cardSide === 'left'
+    ? 'md:mr-auto md:ml-[3%]'
+    : 'md:ml-auto md:mr-[3%]';
+
+const imagePos = cardSide === 'left' ? 'md:right-[3%]' : 'md:left-[3%]';
+---
+
+<section class={bands[theme]}>
+  <div class="relative mx-auto max-w-[1500px]">
+    <!-- Desktop: photo sits behind, inset from the top and bottom of the band. -->
+    <div class={`hidden md:block md:absolute md:inset-y-12 md:w-[52%] ${imagePos}`}>
+      <Image
+        src={image}
+        alt={alt}
+        widths={[600, 900, 1400]}
+        sizes="52vw"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Mobile: photo stacks above the card. -->
+    <div class="md:hidden">
+      <Image
+        src={image}
+        alt={alt}
+        widths={[500, 800]}
+        sizes="100vw"
+        class="h-64 w-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <div
+      class={`relative z-10 md:w-[52%] md:my-24 ${cardPos} ${cards[cardBg]} px-7 py-12 md:px-16 md:py-20`}
+    >
+      <slot />
+    </div>
+  </div>
+</section>

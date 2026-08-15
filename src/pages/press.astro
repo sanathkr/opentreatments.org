@@ -10,27 +10,27 @@ import { pressReleases, news, interviews } from '../data/press';
   description="The latest news, press releases and interviews about the Open Treatments Foundation."
 >
   <Section theme="brand" space="loose">
-    <h1 class="mx-auto max-w-4xl text-center text-4xl leading-tight md:text-5xl">
+    <h1 class="type-section mx-auto max-w-4xl text-center">
       Check out the latest news and stories about OpenTreatments
     </h1>
   </Section>
 
   <Section theme="white">
-    <h2 class="text-3xl md:text-4xl">Press Releases</h2>
+    <h2 class="type-section">Press Releases</h2>
     <ul class="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
       {pressReleases.map((item) => <li><PressCard item={item} /></li>)}
     </ul>
   </Section>
 
   <Section theme="light">
-    <h2 class="text-3xl md:text-4xl">News</h2>
+    <h2 class="type-section">News</h2>
     <ul class="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
       {news.map((item) => <li><PressCard item={item} /></li>)}
     </ul>
   </Section>
 
   <Section theme="white">
-    <h2 class="text-3xl md:text-4xl">Interviews</h2>
+    <h2 class="type-section">Interviews</h2>
     <ul class="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
       {interviews.map((item) => <li><PressCard item={item} /></li>)}
     </ul>

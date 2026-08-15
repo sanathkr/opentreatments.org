@@ -3,61 +3,32 @@ import { Image } from 'astro:assets';
 import type { Person } from '../data/people';
 import { img } from '../lib/images';
 
+/**
+ * A team-grid card: square photo, name, role. The Squarespace original used
+ * square (not circular) crops, a 27.2px name and a 25.5px role, all centred.
+ */
 interface Props {
   person: Person;
-  /** 'full' shows the long biography (board), 'compact' is a photo + name (team). */
-  variant?: 'full' | 'compact';
   /**
-   * Heading level for the person's name. Pages that list people directly under
-   * their <h1> pass 'h2'; the team page nests them under group headings, so it
-   * keeps the 'h3' default. Skipping a level confuses screen readers.
+   * Heading level for the name. The team page nests these under group
+   * headings, so 'h3' is the default; skipping a level confuses screen readers.
    */
   as?: 'h2' | 'h3';
 }
 
-const { person, variant = 'compact', as: Heading = 'h3' } = Astro.props;
+const { person, as: Heading = 'h3' } = Astro.props;
 const photo = img(person.photo);
 ---
 
-{
-  variant === 'full' ? (
-    <article class="grid gap-8 md:grid-cols-[220px_1fr] md:gap-12">
-      <Image
-        src={photo}
-        alt={person.name}
-        widths={[220, 440]}
-        sizes="220px"
-        class="aspect-square w-full max-w-56 rounded-full object-cover"
-        loading="lazy"
-      />
-      <div>
-        <Heading class="text-3xl">{person.name}</Heading>
-        {person.title && <p class="mt-2 text-lg opacity-70">{person.title}</p>}
-        {person.bio && <p class="mt-5 leading-relaxed"><Fragment set:html={person.bio.replace(/\(curegpx4\.org\)/, '(<a class="underline underline-offset-4" href="https://www.curegpx4.org" target="_blank" rel="noopener noreferrer">curegpx4.org</a>)')} /></p>}
-      </div>
-    </article>
-  ) : (
-    <article class="text-center">
-      <Image
-        src={photo}
-        alt={person.name}
-        widths={[200, 400]}
-        sizes="(min-width: 768px) 200px, 45vw"
-        class="mx-auto aspect-square w-full max-w-48 rounded-full object-cover"
-        loading="lazy"
-      />
-      <Heading class="mt-5 text-xl">{person.name}</Heading>
-      {person.title && <p class="mt-1 text-sm opacity-70">{person.title}</p>}
-      {person.bioUrl && (
-        <a
-          href={person.bioUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-3 inline-block text-sm underline underline-offset-4 hover:opacity-60"
-        >
-          Read Bio
-        </a>
-      )}
-    </article>
-  )
-}
+<article class="text-center">
+  <Image
+    src={photo}
+    alt={person.name}
+    widths={[320, 640]}
+    sizes="(min-width: 768px) 22vw, 45vw"
+    class="aspect-square w-full object-cover"
+    loading="lazy"
+  />
+  <Heading class="type-lead mt-6">{person.name}</Heading>
+  {person.title && <p class="type-intro mt-1">{person.title}</p>}
+</article>

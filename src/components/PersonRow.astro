@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import type { Person } from '../data/people';
+import { img } from '../lib/images';
+
+/**
+ * One person per row, photo and text side by side, alternating sides down the
+ * page. This is how the Squarespace board and advisor pages were laid out:
+ * a 42%-wide square photo and a 42%-wide text column, both inset 3%.
+ */
+interface Props {
+  person: Person;
+  /** Row index — even rows put the photo on the left, odd rows on the right. */
+  index: number;
+  as?: 'h2' | 'h3';
+}
+
+const { person, index, as: Heading = 'h2' } = Astro.props;
+const photo = img(person.photo);
+const photoRight = index % 2 === 1;
+---
+
+<article class="grid items-center gap-8 md:grid-cols-2 md:gap-[6%]">
+  <div class={photoRight ? 'md:order-2' : ''}>
+    <Image
+      src={photo}
+      alt={person.name}
+      widths={[400, 620, 900]}
+      sizes="(min-width: 768px) 42vw, 90vw"
+      class="w-full object-contain"
+      loading="lazy"
+    />
+  </div>
+
+  <div class={photoRight ? 'md:order-1' : ''}>
+    <Heading class="type-section">{person.name}</Heading>
+    {person.title && <p class="mt-5">{person.title}</p>}
+    {
+      person.bio && (
+        <p class="mt-5">
+          <Fragment
+            set:html={person.bio.replace(
+              /\(curegpx4\.org\)/,
+              '(<a class="underline underline-offset-4" href="https://www.curegpx4.org" target="_blank" rel="noopener noreferrer">curegpx4.org</a>)',
+            )}
+          />
+        </p>
+      )
+    }
+    {
+      person.bioUrl && (
+        <a
+          href={person.bioUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-5 inline-block underline underline-offset-4 hover:opacity-60"
+        >
+          Read Bio
+        </a>
+      )
+    }
+  </div>
+</article>

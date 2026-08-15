@@ -8,9 +8,16 @@ interface Props {
   columns?: 2 | 3 | 4;
   /** Logos sit on dark bands in places; give them a white plate there. */
   plate?: boolean;
+  /** 'large' matches the ~106px tall logos the home page used. */
+  size?: 'normal' | 'large';
 }
 
-const { logos, columns = 4, plate = false } = Astro.props;
+const { logos, columns = 4, plate = false, size = 'normal' } = Astro.props;
+
+const heights = {
+  normal: 'h-16 md:h-20',
+  large: 'h-20 md:h-[106px]',
+};
 
 const cols = {
   2: 'grid-cols-2',
@@ -28,7 +35,7 @@ const cols = {
           alt={logo.name}
           widths={[240, 480]}
           sizes="(min-width: 768px) 240px, 40vw"
-          class="mx-auto h-16 w-auto max-w-full object-contain md:h-20"
+          class={`mx-auto w-auto max-w-full object-contain ${heights[size]}`}
           loading="lazy"
         />
       </li>
