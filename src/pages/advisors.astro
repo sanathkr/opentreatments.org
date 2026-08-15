@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PersonCard from '../components/PersonCard.astro';
+import { advisors } from '../data/people';
+---
+
+<Base title="Advisors" description="Meet the advisors to the Open Treatments Foundation.">
+  <Section theme="light">
+    <h1 class="text-center text-4xl md:text-5xl">Meet our Advisors</h1>
+
+    <ul class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        advisors.map((person) => (
+          <li>
+            <PersonCard person={person} />
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+</Base>

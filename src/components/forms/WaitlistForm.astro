@@ -1,0 +1,43 @@
+---
+import Field from './Field.astro';
+
+/**
+ * Appears on the home page, /platform and /join-waitlist.
+ * Submissions land in Netlify → Forms → "waitlist".
+ */
+---
+
+<form
+  name="waitlist"
+  method="POST"
+  action="/thank-you?form=waitlist"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="mx-auto w-full max-w-xl text-left"
+>
+  <input type="hidden" name="form-name" value="waitlist" />
+  <p class="hidden">
+    <label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <fieldset class="grid gap-5 sm:grid-cols-2">
+    <legend class="sr-only">Your name</legend>
+    <Field label="First Name" name="first-name" required autocomplete="given-name" />
+    <Field label="Last Name" name="last-name" required autocomplete="family-name" />
+  </fieldset>
+
+  <div class="mt-5">
+    <Field label="Email" name="email" type="email" required autocomplete="email" />
+  </div>
+
+  <div class="mt-5">
+    <Field label="Tell us about your patient organization" name="organization" type="textarea" required />
+  </div>
+
+  <button
+    type="submit"
+    class="mt-7 w-full bg-brand px-8 py-4 text-sm uppercase tracking-button text-white transition-colors hover:bg-brand-dark sm:w-auto"
+  >
+    Join Waitlist
+  </button>
+</form>

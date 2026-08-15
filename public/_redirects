@@ -1,0 +1,12 @@
+# Squarespace served the home page at /home as well as /.
+/home                           /                 301
+
+# Squarespace's "About Us" nav folder had its own index URL.
+/about                          /what-we-stand-for  301
+
+# The blog was retired during the move off Squarespace.
+/blog                           /                 301
+/blog/*                         /                 301
+
+# Squarespace's built-in commerce routes, which this site never used.
+/cart                           /                 301

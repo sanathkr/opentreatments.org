@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+/* Fonts. Pontano Sans is the same face the Squarespace site used.
+   Source Serif 4 stands in for "adonis-web", which was an Adobe Fonts
+   licence that came bundled with Squarespace and did not transfer. */
+@import '@fontsource/pontano-sans/400.css';
+@import '@fontsource/pontano-sans/700.css';
+@import '@fontsource-variable/source-serif-4';
+
+@theme {
+  /* Palette lifted from the live Squarespace site's computed styles. */
+  --color-brand: #3e3465;
+  --color-brand-dark: #2e2650;
+  --color-ink: #000000;
+  --color-slate: #4f4f4f;
+  --color-cream: #f8f1f1;
+
+  --font-sans: 'Pontano Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #ffffff;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  /* Visible focus ring for keyboard users — Squarespace suppressed this. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Squarespace set all-caps letterspaced buttons and eyebrow labels. */
+  .tracking-button {
+    letter-spacing: 0.12em;
+  }
+}

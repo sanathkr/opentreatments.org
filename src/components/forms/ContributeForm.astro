@@ -1,0 +1,74 @@
+---
+import Field from './Field.astro';
+
+/** Submissions land in Netlify → Forms → "contribute". */
+
+/** Edit this list to change the checkboxes volunteers can pick from. */
+const skills = [
+  'Typescript',
+  'Backend - Serverless Framework',
+  'Backend - AWS Lambda',
+  'Backend - AWS DynamoDB',
+  'Backend - AWS API Gateway',
+  'Backend - AWS Cognito',
+  'Backend - ExpressJS / Nodejs',
+  'Frontend - React / Next.js',
+  'UX Design',
+  'Product Management',
+  'Content Writing',
+  'Others',
+];
+---
+
+<form
+  name="contribute"
+  method="POST"
+  action="/thank-you?form=contribute"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="mx-auto w-full max-w-xl text-left"
+>
+  <input type="hidden" name="form-name" value="contribute" />
+  <p class="hidden">
+    <label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <Field label="Name" name="name" required autocomplete="name" />
+
+  <div class="mt-5">
+    <Field label="Email" name="email" type="email" required autocomplete="email" />
+  </div>
+
+  <fieldset class="mt-7">
+    <legend class="text-[15px]">Skills / Technologies</legend>
+    <p class="mt-1 text-sm opacity-70">
+      Please select any technologies you are good at. It helps us match you with the right projects
+    </p>
+    <div class="mt-4 grid gap-3 sm:grid-cols-2">
+      {
+        skills.map((skill) => (
+          <label class="flex items-start gap-3 text-[15px]">
+            <input
+              type="checkbox"
+              name="skills"
+              value={skill}
+              class="mt-1.5 h-4 w-4 shrink-0 accent-[var(--color-brand)]"
+            />
+            <span>{skill}</span>
+          </label>
+        ))
+      }
+    </div>
+  </fieldset>
+
+  <div class="mt-5">
+    <Field label="Anything else you'd like us to know?" name="message" type="textarea" />
+  </div>
+
+  <button
+    type="submit"
+    class="mt-7 w-full bg-brand px-8 py-4 text-sm uppercase tracking-button text-white transition-colors hover:bg-brand-dark sm:w-auto"
+  >
+    Submit
+  </button>
+</form>

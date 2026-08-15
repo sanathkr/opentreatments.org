@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import { img } from '../lib/images';
+
+const goals = [
+  {
+    image: 'stand-for-derisk.png',
+    copy: 'De-risk your disease for multiple therapeutic technologies (gene therapy, ASO, drug repurposing, CRISPR, and anything)',
+  },
+  {
+    image: 'stand-for-connect.png',
+    copy: 'Connect with a global talent pool of researchers, clinicians, marketing, operations, and anyone necessary to advance your programs. Rent, not buy, industry-grade infrastructure to run your scientific experiments',
+  },
+  {
+    image: 'stand-for-funding.png',
+    copy: 'Demonstrate your capabilities to attract funding to your disease irrespective of the rarity',
+  },
+];
+---
+
+<Base
+  title="What we stand for"
+  description="OpenTreatments Foundation envisions a society where every rare disease has at least one treatment."
+>
+  <Section theme="brand" space="loose">
+    <h1 class="mx-auto max-w-4xl text-center text-4xl leading-tight md:text-5xl">
+      OpenTreatments Foundation envisions a society where every rare disease has at least one
+      treatment
+    </h1>
+  </Section>
+
+  <Section theme="white">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <Image
+        src={img('what-we-stand-for-vision.jpeg')}
+        alt=""
+        widths={[600, 1000]}
+        sizes="(min-width: 768px) 45vw, 90vw"
+        class="w-full object-cover"
+        loading="eager"
+      />
+      <p class="leading-relaxed">
+        We are non-profit organization with a mission is to enable treatments for all genetic diseases
+        regardless of rarity or geography using the OpenTreatments software platform. We will
+        decentralize drug development and empower patients, families, or motivated individuals to
+        create a treatment for a disease impacting their loved one. We will enable the hand off of
+        these therapies to commercial/governmental/philanthropic entities to ensure patients around
+        the world get access to the therapies for the years to come.
+      </p>
+    </div>
+  </Section>
+
+  <Section theme="light">
+    <h2 class="text-center text-4xl leading-tight">Our goal is to supercharge patient foundations</h2>
+
+    <ul class="mt-16 grid gap-14 md:grid-cols-3 md:gap-10">
+      {
+        goals.map((goal) => (
+          <li class="text-center">
+            <Image
+              src={img(goal.image)}
+              alt=""
+              widths={[300, 600]}
+              sizes="(min-width: 768px) 300px, 70vw"
+              class="mx-auto h-36 w-auto object-contain"
+              loading="lazy"
+            />
+            <p class="mt-6 leading-relaxed">{goal.copy}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+</Base>

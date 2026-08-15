@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import PersonCard from '../components/PersonCard.astro';
+import { board } from '../data/people';
+---
+
+<Base
+  title="Board of Directors"
+  description="Meet the Board of Directors of the Open Treatments Foundation."
+>
+  <Section theme="light">
+    <h1 class="text-center text-4xl md:text-5xl">Meet our Board of Directors</h1>
+
+    <div class="mt-16 space-y-16 md:mt-20 md:space-y-20">
+      {board.map((person) => <PersonCard person={person} variant="full" />)}
+    </div>
+  </Section>
+</Base>

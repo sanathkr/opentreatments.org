@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { site, footerNav } from '../data/site';
+import { img } from '../lib/images';
+
+const logo = img('logo-opentreatments-footer.png');
+---
+
+<footer class="bg-brand text-white">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:px-10 md:py-20">
+    <div class="flex flex-col items-center gap-10 text-center">
+      <Image src={logo} alt="Open Treatments Foundation" widths={[200, 400]} sizes="160px" class="h-14 w-auto" loading="lazy" />
+
+      <p class="max-w-xl leading-relaxed">
+        {site.legal}
+        <br />
+        {site.legalSecondary}
+      </p>
+
+      <nav aria-label="Footer">
+        <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          {
+            footerNav.map((item) => (
+              <li>
+                <a href={item.href} class="underline-offset-4 hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <a href={`mailto:${site.email}`} class="underline-offset-4 hover:underline">{site.email}</a>
+    </div>
+  </div>
+</footer>

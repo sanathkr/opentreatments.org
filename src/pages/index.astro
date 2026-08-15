@@ -1,0 +1,209 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import LogoGrid from '../components/LogoGrid.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+import { collaborators, pilots } from '../data/logos';
+import { site } from '../data/site';
+import { img } from '../lib/images';
+
+const hero = img('hero-home.jpeg');
+
+const pillars = [
+  {
+    image: 'icon-our-mission.png',
+    title: 'Our Mission',
+    copy: 'Our Goal, Vision and Commitment',
+    href: '/what-we-stand-for',
+  },
+  {
+    image: 'icon-our-platform.png',
+    title: 'Our Platform',
+    copy: 'A software to accelerate treatments',
+    href: '/platform',
+  },
+  {
+    image: 'icon-get-involved.png',
+    title: 'Get Involved',
+    copy: 'Partner, Volunteer and Donate',
+    href: '/contact-us',
+  },
+];
+---
+
+<Base title={site.name}>
+  <!-- Hero -->
+  <div class="relative isolate">
+    <Image
+      src={hero}
+      alt=""
+      widths={[800, 1280, 1920]}
+      sizes="100vw"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 -z-10 bg-black/55"></div>
+
+    <div class="mx-auto max-w-6xl px-6 py-32 text-center text-white md:px-10 md:py-48">
+      <h1 class="mx-auto max-w-3xl text-5xl leading-tight md:text-6xl">
+        Enabling treatments for rare diseases
+      </h1>
+      <p class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed md:text-xl">
+        OpenTreatments software platform streamlines therapy development for any monogenic rare
+        disease regardless of rarity and geography
+      </p>
+      <Button href="/platform" variant="light" class="mt-10">Explore Our Platform</Button>
+    </div>
+  </div>
+
+  <!-- Three pillars -->
+  <Section theme="white">
+    <ul class="grid gap-14 md:grid-cols-3 md:gap-10">
+      {
+        pillars.map((pillar) => (
+          <li class="text-center">
+            <a href={pillar.href} class="group block">
+              <Image
+                src={img(pillar.image)}
+                alt=""
+                widths={[300, 600]}
+                sizes="(min-width: 768px) 300px, 70vw"
+                class="mx-auto h-32 w-auto object-contain transition-opacity group-hover:opacity-75"
+                loading="lazy"
+              />
+              <h2 class="mt-6 text-2xl underline-offset-4 group-hover:underline">{pillar.title}</h2>
+              <p class="mt-2 opacity-80">{pillar.copy}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <!-- Empowered to take action -->
+  <Section theme="slate">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <Image
+        src={img('home-empowered-to-take-action.jpg')}
+        alt=""
+        widths={[600, 1000]}
+        sizes="(min-width: 768px) 45vw, 90vw"
+        class="w-full object-cover"
+        loading="lazy"
+      />
+      <div>
+        <h2 class="text-4xl leading-tight">Empowered to take action</h2>
+        <p class="mt-6 leading-relaxed">
+          When it comes to finding treatments for rare diseases patients lead the charge. Without a
+          formal background, they must learn biology, speak like a scientist, raise millions of
+          dollars, conduct research, and move mountains to find a treatment. They are often asked to
+          make life-altering decisions without much background, or support. OpenTreatments Foundation
+          empowers these patient organizations by giving them the software tools to make the right
+          decisions at the right time, with a system of support.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Simplify the maze -->
+  <Section theme="slate">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <div class="md:order-2">
+        <Image
+          src={img('home-simplify-the-maze.png')}
+          alt=""
+          widths={[600, 1000]}
+          sizes="(min-width: 768px) 45vw, 90vw"
+          class="w-full object-contain"
+          loading="lazy"
+        />
+      </div>
+      <div class="md:order-1">
+        <h2 class="text-4xl leading-tight">Simplify the maze</h2>
+        <p class="mt-6 leading-relaxed">
+          Patient organizations are left to navigate the complex treatment development maze. Each
+          patient group creates their own research program without a deep understanding of the risks,
+          benefits, and pitfalls of their decisions. OpenTreatments platform simplifies the maze by
+          bringing in real-world experience along every step leading to faster treatments.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Collaborators -->
+  <Section theme="white">
+    <h2 class="text-center text-4xl">Our Collaborators</h2>
+    <div class="mt-14">
+      <LogoGrid logos={collaborators} columns={4} />
+    </div>
+  </Section>
+
+  <!-- Platform teaser -->
+  <Section theme="light">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <Image
+        src={img('platform-roadmap.png')}
+        alt="A treatment roadmap in the OpenTreatments platform"
+        widths={[600, 1000]}
+        sizes="(min-width: 768px) 45vw, 90vw"
+        class="w-full object-contain"
+        loading="lazy"
+      />
+      <div>
+        <h2 class="text-4xl leading-tight">OpenTreatments Platform</h2>
+        <p class="mt-6 text-lg leading-relaxed">
+          A software platform to give patients the tools and technology to build treatments for any
+          monogenic rare disease
+        </p>
+        <Button href="/platform" variant="outline" class="mt-8">Learn more</Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Waitlist -->
+  <Section theme="slate">
+    <div class="text-center">
+      <h2 class="text-4xl leading-tight">Try OpenTreatments Platform</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg">
+        We are currently piloting OpenTreatments platform with 4 patient led organizations
+      </p>
+      <div class="mx-auto mt-12 max-w-3xl">
+        <LogoGrid logos={pilots} columns={4} plate />
+      </div>
+      <p class="mx-auto mt-14 max-w-2xl text-lg">
+        Join the waitlist to get priority access when we open more broadly.
+      </p>
+      <div class="mt-8">
+        <WaitlistForm />
+      </div>
+    </div>
+  </Section>
+
+  <!-- Testimonial -->
+  <Section theme="white">
+    <figure class="grid items-center gap-10 md:grid-cols-[260px_1fr] md:gap-16">
+      <Image
+        src={img('person-geoff-rhyne.png')}
+        alt="Geoff Rhyne"
+        widths={[260, 520]}
+        sizes="260px"
+        class="aspect-square w-full max-w-64 rounded-full object-cover"
+        loading="lazy"
+      />
+      <div>
+        <blockquote class="text-xl leading-relaxed md:text-2xl">
+          “OpenTreatments will enable IDefine to accelerate our mission by distilling down the
+          necessary steps in the development of a gene therapy program into a concise and approachable
+          plan”
+        </blockquote>
+        <figcaption class="mt-6 opacity-75">
+          — Geoff Rhyne, Co-Founder and CEO of IDefine, a patient-led organization tackling Kleefstra
+          Syndrome caused by mutations in EHMT1 gene.
+        </figcaption>
+      </div>
+    </figure>
+  </Section>
+</Base>

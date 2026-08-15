@@ -1,0 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import type { PressItem } from '../data/press';
+import { img } from '../lib/images';
+
+interface Props {
+  item: PressItem;
+}
+
+const { item } = Astro.props;
+const external = item.href.startsWith('http');
+---
+
+<article>
+  <a
+    href={item.href}
+    class="group block"
+    {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+  >
+    <Image
+      src={img(item.image)}
+      alt=""
+      widths={[300, 600]}
+      sizes="(min-width: 768px) 300px, 90vw"
+      class="h-28 w-full object-contain transition-opacity group-hover:opacity-75"
+      loading="lazy"
+    />
+    <p class="mt-4 leading-snug underline-offset-4 group-hover:underline">
+      {item.title}
+    </p>
+  </a>
+</article>

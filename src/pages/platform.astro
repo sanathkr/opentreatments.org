@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import LogoGrid from '../components/LogoGrid.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+import { pilots } from '../data/logos';
+import { site } from '../data/site';
+import { img } from '../lib/images';
+
+const features = [
+  {
+    image: 'platform-roadmap.png',
+    title: 'Build your treatment roadmap in minutes',
+    copy: 'Create a roadmap for a gene therapy treatment within minutes. Identify upcoming milestones and plan ahead to secure funds and resources needed to drive your project ahead without stalling.',
+  },
+  {
+    image: 'platform-science-team.png',
+    title: 'Get access to an expert science team in a hop',
+    copy: 'Not sure the right animal model for your disease? Unsure who will be able to help you get to the next step? Our expert science team is available to talk through the pros and cons and recommend the right next steps for you.',
+  },
+  {
+    image: 'platform-connect-people.png',
+    title: 'Connect with the right people at the right time',
+    copy: 'Identifying partners, negotiating contracts and kick starting a research phase can be time consuming and intimidating. OpenTreatments can connect patient organizations with the right people at the right time.',
+  },
+];
+---
+
+<Base
+  title="Platform"
+  description="OpenTreatments is the world's first software platform to give patients the tools and technology to build treatments for any monogenic rare disease."
+>
+  <Section theme="brand" space="loose">
+    <div class="text-center">
+      <h1 class="mx-auto max-w-3xl text-4xl leading-tight md:text-5xl">
+        A faster way to build treatments
+      </h1>
+      <p class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed">
+        OpenTreatments is the world's first software platform to give patients the tools and
+        technology to build treatments for any monogenic rare disease
+      </p>
+      <Button href="/join-waitlist" variant="light" class="mt-10">Join Waitlist</Button>
+    </div>
+  </Section>
+
+  <Image
+    src={img('platform-hero.jpg')}
+    alt=""
+    widths={[800, 1280, 1920]}
+    sizes="100vw"
+    class="h-72 w-full object-cover md:h-[28rem]"
+    loading="eager"
+  />
+
+  {
+    features.map((feature, i) => (
+      <Section theme={i === 2 ? 'light' : 'white'}>
+        <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+          <div class={i % 2 === 1 ? 'md:order-2' : ''}>
+            <Image
+              src={img(feature.image)}
+              alt=""
+              widths={[600, 1000]}
+              sizes="(min-width: 768px) 45vw, 90vw"
+              class="w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class={i % 2 === 1 ? 'md:order-1' : ''}>
+            <h2 class="text-3xl leading-tight md:text-4xl">{feature.title}</h2>
+            <p class="mt-6 leading-relaxed">{feature.copy}</p>
+          </div>
+        </div>
+      </Section>
+    ))
+  }
+
+  <Section theme="slate">
+    <div class="text-center">
+      <h2 class="text-4xl leading-tight">Try OpenTreatments Platform</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg">
+        We are currently piloting OpenTreatments platform with 4 patient led organizations
+      </p>
+      <div class="mx-auto mt-12 max-w-3xl">
+        <LogoGrid logos={pilots} columns={4} plate />
+      </div>
+      <p class="mx-auto mt-14 max-w-2xl text-lg">
+        Join the waitlist to get priority access when we open more broadly.
+      </p>
+      <div class="mt-8">
+        <WaitlistForm />
+      </div>
+    </div>
+  </Section>
+
+  <Section theme="white">
+    <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <div>
+        <h2 class="text-4xl leading-tight">Open Source is in our DNA</h2>
+        <p class="mt-6 leading-relaxed">
+          OpenTreatments software platform is fully open source under a Linux Foundation project
+          called RareCamp.
+        </p>
+        <Button href={site.github} variant="outline" class="mt-8">Github</Button>
+      </div>
+      <Image
+        src={img('logo-linux-foundation-rarecamp.png')}
+        alt="The Linux Foundation and RareCamp"
+        widths={[300, 600]}
+        sizes="(min-width: 768px) 300px, 70vw"
+        class="mx-auto h-48 w-auto object-contain"
+        loading="lazy"
+      />
+    </div>
+  </Section>
+</Base>

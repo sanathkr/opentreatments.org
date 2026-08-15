@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+
+/**
+ * Where every form redirects after a successful submission. The message varies
+ * by which form was sent, via the ?form= parameter the forms append.
+ */
+---
+
+<Base title="Thank you" description="Thanks for getting in touch." indexable={false}>
+  <Section theme="light" space="loose">
+    <div class="mx-auto max-w-2xl text-center">
+      <h1 class="text-4xl md:text-5xl">Thank you</h1>
+
+      <p id="message" class="mt-8 text-lg leading-relaxed">
+        We have received your message and someone will get back to you by email shortly.
+      </p>
+
+      <div id="extra" class="mt-8 hidden">
+        <Button href={site.github} variant="outline">Browse our code on Github</Button>
+      </div>
+
+      <div class="mt-12">
+        <a href="/" class="underline underline-offset-4 hover:opacity-70">Back to the home page</a>
+      </div>
+    </div>
+  </Section>
+</Base>
+
+<script>
+  const messages: Record<string, string> = {
+    waitlist:
+      'Thanks for joining the waitlist. We will be in touch by email as we open the platform up more broadly.',
+    contact: 'Thanks for reaching out. Someone will get back to you by email shortly.',
+    contribute:
+      'Thank you for your interest! Someone will reach out to you via email shortly. Please browse our code repository in the meantime.',
+  };
+
+  const form = new URLSearchParams(window.location.search).get('form') ?? '';
+  const copy = messages[form];
+  if (copy) document.getElementById('message')!.textContent = copy;
+  if (form === 'contribute') document.getElementById('extra')!.classList.remove('hidden');
+</script>

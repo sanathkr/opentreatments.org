@@ -1,0 +1,40 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'textarea';
+  required?: boolean;
+  autocomplete?: string;
+  /** Renders the label visually smaller, for the paired first/last name row. */
+  sublabel?: string;
+}
+
+const { label, name, type = 'text', required = false, autocomplete, sublabel } = Astro.props;
+
+const control =
+  'mt-2 w-full border border-black/25 bg-white px-4 py-3 text-ink outline-none transition-colors focus:border-brand';
+---
+
+<div>
+  <label for={name} class="block">
+    <span class="text-[15px]">{label}</span>
+    {required && <span class="ml-1 text-sm opacity-60">(required)</span>}
+  </label>
+
+  {
+    type === 'textarea' ? (
+      <textarea id={name} name={name} required={required} rows="6" class={control} />
+    ) : (
+      <input
+        id={name}
+        name={name}
+        type={type}
+        required={required}
+        autocomplete={autocomplete}
+        class={control}
+      />
+    )
+  }
+
+  {sublabel && <span class="mt-1 block text-sm opacity-60">{sublabel}</span>}
+</div>

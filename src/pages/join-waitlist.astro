@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import LogoGrid from '../components/LogoGrid.astro';
+import WaitlistForm from '../components/forms/WaitlistForm.astro';
+import { pilots } from '../data/logos';
+---
+
+<Base
+  title="Join Waitlist"
+  description="Patient organizations can join the waitlist for priority access to the OpenTreatments platform."
+>
+  <Section theme="light">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-5xl">Join the waitlist</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed">
+        With our initial launch we are working with a closed set of patient organizations.
+      </p>
+
+      <div class="mx-auto mt-14 max-w-3xl">
+        <LogoGrid logos={pilots} columns={4} />
+      </div>
+
+      <p class="mx-auto mt-14 max-w-2xl text-lg leading-relaxed">
+        If you are a patient organization interested in using the OpenTreatments platform to develop
+        your gene therapy program, please join our waitlist to get priority access when we open more
+        broadly.
+      </p>
+
+      <div class="mt-10">
+        <WaitlistForm />
+      </div>
+    </div>
+  </Section>
+</Base>

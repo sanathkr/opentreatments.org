@@ -1,0 +1,28 @@
+---
+interface Props {
+  href: string;
+  variant?: 'solid' | 'outline' | 'light';
+  class?: string;
+}
+
+const { href, variant = 'solid', class: className = '' } = Astro.props;
+
+const variants = {
+  /** Purple block button — the header "Contact Us" treatment. */
+  solid: 'bg-brand text-white hover:bg-brand-dark',
+  /** Bordered button on light backgrounds. */
+  outline: 'border border-current text-ink hover:bg-ink hover:text-white',
+  /** White block button used over photography and dark bands. */
+  light: 'bg-white text-ink hover:bg-cream',
+};
+
+const external = href.startsWith('http');
+---
+
+<a
+  href={href}
+  class={`inline-block px-8 py-4 text-sm uppercase tracking-button transition-colors duration-200 ${variants[variant]} ${className}`}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <slot />
+</a>
