@@ -78,6 +78,39 @@ they appear in the order they're listed.
 
 ---
 
+## Edit the Connect Wiki
+
+The wiki lives in `src/content/wiki/` as plain Markdown — one file per page.
+`vision-mission-strategy.md` becomes `/connect-wiki/vision-mission-strategy`, and
+`teams/research.md` becomes `/connect-wiki/teams/research`.
+
+Each file starts with a small block of settings:
+
+```markdown
+---
+title: "Roadmap"
+description: "The direction Connect is headed, its current objective and milestones."
+order: 2
+---
+
+Body text in Markdown from here down.
+```
+
+- `title` — the page heading and the label in the wiki sidebar
+- `description` — the blurb on the wiki index, and the search-result snippet
+- `order` — position in the sidebar, low to high
+- `parent` — set to another page's name (e.g. `parent: "teams"`) to nest it
+
+Adding a file is all it takes to add a wiki page; the sidebar, the index and the
+previous/next links all pick it up. Start body headings at `##` — the page title
+is already the `<h1>`.
+
+**These pages are set to `noindex`**, matching the Super.site wiki, which served
+`robots.txt: Disallow: /`. They're reachable by anyone with the link but won't appear
+in search results. To publish them properly, remove `indexable={false}` from both
+files in `src/pages/connect-wiki/` and drop `/connect-wiki` from `NOINDEX` in
+`astro.config.mjs`.
+
 ## Add press coverage
 
 Open `src/data/press.ts`. Add the outlet's logo to `src/assets/images/` as

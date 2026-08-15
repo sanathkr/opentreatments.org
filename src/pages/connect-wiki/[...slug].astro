@@ -1,0 +1,83 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import WikiNav from '../../components/WikiNav.astro';
+import { getWikiTree, wikiUrl } from '../../lib/wiki';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('wiki');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const tree = await getWikiTree();
+
+// Flatten the tree to work out what comes next in reading order.
+const flat = tree.flatMap((s) => [s.entry, ...s.children]);
+const i = flat.findIndex((e) => e.id === entry.id);
+const prev = i > 0 ? flat[i - 1] : null;
+const next = i < flat.length - 1 ? flat[i + 1] : null;
+
+const parent = entry.data.parent
+  ? (tree.find((s) => s.entry.id === entry.data.parent)?.entry ?? null)
+  : null;
+---
+
+<Base title={entry.data.title} description={entry.data.description} indexable={false}>
+  <div class="mx-auto max-w-[1100px] px-6 py-12 md:px-10 md:py-16">
+    <div class="grid gap-12 md:grid-cols-[220px_1fr] md:gap-16">
+      <aside class="md:sticky md:top-28 md:self-start">
+        <WikiNav tree={tree} current={entry.id} />
+      </aside>
+
+      <article>
+        <nav aria-label="Breadcrumb" class="text-sm">
+          <a href="/connect-wiki" class="underline-offset-4 hover:underline">Connect Wiki</a>
+          {parent && (
+            <>
+              <span class="px-2 opacity-40">/</span>
+              <a href={wikiUrl(parent)} class="underline-offset-4 hover:underline">
+                {parent.data.title}
+              </a>
+            </>
+          )}
+        </nav>
+
+        <h1 class="type-section mt-4">{entry.data.title}</h1>
+
+        <div class="wiki-prose mt-10">
+          <Content />
+        </div>
+
+        {
+          (prev || next) && (
+            <nav
+              aria-label="More in this wiki"
+              class="mt-16 flex flex-wrap justify-between gap-6 border-t border-black/10 pt-8"
+            >
+              {prev ? (
+                <a href={wikiUrl(prev)} class="group max-w-[45%]">
+                  <span class="block text-sm uppercase tracking-button opacity-60">Previous</span>
+                  <span class="mt-1 block underline-offset-4 group-hover:underline">
+                    {prev.data.title}
+                  </span>
+                </a>
+              ) : (
+                <span />
+              )}
+              {next && (
+                <a href={wikiUrl(next)} class="group ml-auto max-w-[45%] text-right">
+                  <span class="block text-sm uppercase tracking-button opacity-60">Next</span>
+                  <span class="mt-1 block underline-offset-4 group-hover:underline">
+                    {next.data.title}
+                  </span>
+                </a>
+              )}
+            </nav>
+          )
+        }
+      </article>
+    </div>
+  </div>
+</Base>

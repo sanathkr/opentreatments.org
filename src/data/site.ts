@@ -22,7 +22,7 @@ export const mainNav = [
       { label: 'Team', href: '/team' },
     ],
   },
-  { label: 'Connect Wiki', href: 'https://opentreatments-connect.super.site' },
+  { label: 'Connect Wiki', href: '/connect-wiki' },
   { label: 'Platform', href: '/platform' },
   { label: 'Press', href: '/press' },
 ];

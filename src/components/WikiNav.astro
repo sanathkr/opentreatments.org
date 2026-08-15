@@ -1,0 +1,53 @@
+---
+import type { WikiSection } from '../lib/wiki';
+import { wikiUrl } from '../lib/wiki';
+
+interface Props {
+  tree: WikiSection[];
+  /** id of the page being viewed, so it can be marked as current. */
+  current?: string;
+}
+
+const { tree, current } = Astro.props;
+
+const linkClass = (id: string) =>
+  id === current
+    ? 'block py-1.5 text-brand underline underline-offset-4'
+    : 'block py-1.5 hover:text-brand';
+---
+
+<nav aria-label="Connect Wiki">
+  <a
+    href="/connect-wiki"
+    class={current
+      ? 'block text-sm uppercase tracking-button opacity-60 hover:opacity-100'
+      : 'block text-sm uppercase tracking-button text-brand'}
+  >
+    Connect Wiki
+  </a>
+
+  <ul class="mt-4 border-l border-black/10 pl-4">
+    {
+      tree.map((section) => (
+        <li class="mt-1">
+          <a href={wikiUrl(section.entry)} class={linkClass(section.entry.id)}
+             aria-current={section.entry.id === current ? 'page' : undefined}>
+            {section.entry.data.title}
+          </a>
+          {section.children.length > 0 && (
+            <ul class="mb-2 ml-3 border-l border-black/10 pl-4">
+              {section.children.map((child) => (
+                <li>
+                  <a href={wikiUrl(child)} class={`${linkClass(child.id)} text-[15px]`}
+                     aria-current={child.id === current ? 'page' : undefined}>
+                    {child.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
