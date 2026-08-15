@@ -131,6 +131,17 @@ upload the full-resolution original.
 If you mistype a filename the build fails with a message naming the file it couldn't
 find, rather than publishing a broken image.
 
+One caveat: **everything** in `src/assets/images/` gets published, whether a page uses
+it or not. Don't park drafts or alternate crops there — they'd be served to visitors.
+Working files belong in `design/`, which is not part of the build.
+
+## Favicon
+
+The browser-tab icon lives in `public/` (`favicon.ico`, `favicon-32.png`,
+`favicon-192.png`, `favicon-512.png`, `apple-touch-icon.png`), generated from
+`design/favicon-source.png`. To change it, replace that source and regenerate — the
+Apple icon needs a solid background, since iOS turns transparency black.
+
 ---
 
 ## If something goes wrong
