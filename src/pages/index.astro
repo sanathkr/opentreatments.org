@@ -39,7 +39,7 @@ const pillars = [
 ---
 
 <Base title={site.name}>
-  <!-- Hero -->
+  {/* Hero */}
   <div class="relative isolate flex min-h-[560px] items-center md:min-h-[728px]">
     <Image
       src={hero}
@@ -50,7 +50,7 @@ const pillars = [
       loading="eager"
       fetchpriority="high"
     />
-    <!-- The original overlays the photo with black at 60%. -->
+    {/* The original overlays the photo with black at 60%. */}
     <div class="absolute inset-0 -z-10 bg-black/60"></div>
 
     <div class="mx-auto w-full max-w-[1036px] px-6 py-24 text-center text-white md:px-10">
@@ -63,7 +63,7 @@ const pillars = [
     </div>
   </div>
 
-  <!-- Three coloured pillars -->
+  {/* Three coloured pillars */}
   <section class="bg-white py-14 md:py-16">
     <div class="mx-auto max-w-[1500px] px-[3%]">
       <ul class="grid gap-6 md:grid-cols-3 md:gap-[2.7%]">
@@ -91,7 +91,7 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Empowered to take action: white card overlapping the photo -->
+  {/* Empowered to take action: white card overlapping the photo */}
   <OverlapCard image={img('home-empowered-to-take-action.jpg')} cardSide="left" cardBg="white" theme="slate">
     <h2 class="type-section">Empowered to take action</h2>
     <p class="mt-7">
@@ -104,7 +104,7 @@ const pillars = [
     </p>
   </OverlapCard>
 
-  <!-- Simplify the maze: image left, text right, no card -->
+  {/* Simplify the maze: image left, text right, no card */}
   <section class="bg-slate text-white">
     <div class="mx-auto grid max-w-[1500px] items-center gap-10 px-[3%] py-14 md:grid-cols-2 md:gap-[6%] md:py-16">
       <Image
@@ -127,7 +127,7 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Collaborators -->
+  {/* Collaborators */}
   <Section theme="white">
     <h2 class="type-section text-center">Our Collaborators</h2>
     <div class="mt-14">
@@ -135,7 +135,7 @@ const pillars = [
     </div>
   </Section>
 
-  <!-- Platform teaser -->
+  {/* Platform teaser */}
   <section class="bg-cream">
     <div class="mx-auto grid max-w-[1500px] items-center gap-10 px-[3%] py-16 md:grid-cols-[54%_1fr] md:gap-[5%] md:py-20">
       <Image
@@ -157,7 +157,7 @@ const pillars = [
     </div>
   </section>
 
-  <!-- Pilots + waitlist -->
+  {/* Pilots + waitlist */}
   <Section theme="slate">
     <div class="text-center">
       <h2 class="type-section">Try OpenTreatments Platform</h2>
@@ -176,7 +176,7 @@ const pillars = [
     </div>
   </Section>
 
-  <!-- Testimonial: cream card overlapping the photo -->
+  {/* Testimonial: cream card overlapping the photo */}
   <OverlapCard image={img('person-geoff-rhyne.png')} alt="Geoff Rhyne" cardSide="left" cardBg="cream" theme="white">
     <blockquote class="type-lead">
       “OpenTreatments will enable IDefine to accelerate our mission by distilling down the necessary

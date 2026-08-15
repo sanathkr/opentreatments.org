@@ -41,7 +41,7 @@ const imagePos = cardSide === 'left' ? 'md:right-[3%]' : 'md:left-[3%]';
 
 <section class={bands[theme]}>
   <div class="relative mx-auto max-w-[1500px]">
-    <!-- Desktop: photo sits behind, inset from the top and bottom of the band. -->
+    {/* Desktop: photo sits behind, inset from the top and bottom of the band. */}
     <div class={`hidden md:block md:absolute md:inset-y-12 md:w-[52%] ${imagePos}`}>
       <Image
         src={image}
@@ -53,7 +53,7 @@ const imagePos = cardSide === 'left' ? 'md:right-[3%]' : 'md:left-[3%]';
       />
     </div>
 
-    <!-- Mobile: photo stacks above the card. -->
+    {/* Mobile: photo stacks above the card. */}
     <div class="md:hidden">
       <Image
         src={image}

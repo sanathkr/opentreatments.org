@@ -14,7 +14,7 @@ const isCurrent = (href: string) => href === path;
       <Image src={logo} alt="Open Treatments Foundation" widths={[220, 440]} sizes="180px" class="h-11 w-auto md:h-14" loading="eager" />
     </a>
 
-    <!-- Desktop navigation -->
+    {/* Desktop navigation */}
     <nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
       {
         mainNav.map((item) =>
@@ -67,7 +67,7 @@ const isCurrent = (href: string) => href === path;
       </a>
     </nav>
 
-    <!-- Mobile menu trigger -->
+    {/* Mobile menu trigger */}
     <button
       type="button"
       id="menu-toggle"
@@ -82,7 +82,7 @@ const isCurrent = (href: string) => href === path;
     </button>
   </div>
 
-  <!-- Mobile menu -->
+  {/* Mobile menu */}
   <nav id="mobile-menu" class="hidden border-t border-black/10 lg:hidden" aria-label="Main">
     <ul class="px-6 py-4">
       {
