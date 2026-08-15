@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
-    "@fontsource-variable/source-serif-4": "^5.2.14",
-    "@fontsource/pontano-sans": "^5.2.9",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.2",
     "tailwindcss": "^4.1.18"

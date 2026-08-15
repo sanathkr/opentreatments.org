@@ -20,7 +20,7 @@ import { teamGroups } from '../data/people';
         teamGroups.map((group) => (
           <div>
             <h2 class="text-center text-3xl">{group.heading}</h2>
-            <ul class="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <ul class="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
               {group.members.map((person) => (
                 <li>
                   <PersonCard person={person} />

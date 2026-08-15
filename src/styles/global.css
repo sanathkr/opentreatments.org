@@ -1,11 +1,9 @@
 @import 'tailwindcss';
 
-/* Fonts. Pontano Sans is the same face the Squarespace site used.
-   Source Serif 4 stands in for "adonis-web", which was an Adobe Fonts
-   licence that came bundled with Squarespace and did not transfer. */
-@import '@fontsource/pontano-sans/400.css';
-@import '@fontsource/pontano-sans/700.css';
-@import '@fontsource-variable/source-serif-4';
+/* Fonts are loaded from Google Fonts — see the <link> tags in
+   src/layouts/Base.astro. Pontano Sans is the same face the Squarespace site
+   used. Source Serif 4 stands in for "adonis-web", which was an Adobe Fonts
+   licence bundled with Squarespace that did not transfer. */
 
 @theme {
   /* Palette lifted from the live Squarespace site's computed styles. */
@@ -16,7 +14,7 @@
   --color-cream: #f8f1f1;
 
   --font-sans: 'Pontano Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
 @layer base {

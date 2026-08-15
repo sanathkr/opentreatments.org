@@ -7,9 +7,15 @@ interface Props {
   person: Person;
   /** 'full' shows the long biography (board), 'compact' is a photo + name (team). */
   variant?: 'full' | 'compact';
+  /**
+   * Heading level for the person's name. Pages that list people directly under
+   * their <h1> pass 'h2'; the team page nests them under group headings, so it
+   * keeps the 'h3' default. Skipping a level confuses screen readers.
+   */
+  as?: 'h2' | 'h3';
 }
 
-const { person, variant = 'compact' } = Astro.props;
+const { person, variant = 'compact', as: Heading = 'h3' } = Astro.props;
 const photo = img(person.photo);
 ---
 
@@ -25,7 +31,7 @@ const photo = img(person.photo);
         loading="lazy"
       />
       <div>
-        <h3 class="text-3xl">{person.name}</h3>
+        <Heading class="text-3xl">{person.name}</Heading>
         {person.title && <p class="mt-2 text-lg opacity-70">{person.title}</p>}
         {person.bio && <p class="mt-5 leading-relaxed"><Fragment set:html={person.bio.replace(/\(curegpx4\.org\)/, '(<a class="underline underline-offset-4" href="https://www.curegpx4.org" target="_blank" rel="noopener noreferrer">curegpx4.org</a>)')} /></p>}
       </div>
@@ -40,7 +46,7 @@ const photo = img(person.photo);
         class="mx-auto aspect-square w-full max-w-48 rounded-full object-cover"
         loading="lazy"
       />
-      <h3 class="mt-5 text-xl">{person.name}</h3>
+      <Heading class="mt-5 text-xl">{person.name}</Heading>
       {person.title && <p class="mt-1 text-sm opacity-70">{person.title}</p>}
       {person.bioUrl && (
         <a

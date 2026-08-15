@@ -9,11 +9,11 @@ import { advisors } from '../data/people';
   <Section theme="light">
     <h1 class="text-center text-4xl md:text-5xl">Meet our Advisors</h1>
 
-    <ul class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-8 lg:grid-cols-4">
       {
         advisors.map((person) => (
           <li>
-            <PersonCard person={person} />
+            <PersonCard person={person} as="h2" />
           </li>
         ))
       }
