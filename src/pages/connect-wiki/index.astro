@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { getWikiTree, wikiUrl } from '../../lib/wiki';
 
 const tree = await getWikiTree();
@@ -30,14 +31,27 @@ const tree = await getWikiTree();
 
   <section class="bg-white py-14 md:py-20">
     <div class="mx-auto max-w-[1100px] px-6 md:px-10">
-      <ul class="grid gap-x-10 gap-y-12 md:grid-cols-2">
+      <h2 class="type-lead">Why Connect matters?</h2>
+      <div class="mt-6 max-w-3xl">
+        <VideoEmbed id="zhKNlD_xJ6o" title="OpenTreatments Connect Vision" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream py-14 md:py-20">
+    <div class="mx-auto max-w-[1100px] px-6 md:px-10">
+      <h2 class="type-lead">Table of Contents</h2>
+      <ul class="mt-8 grid gap-x-10 gap-y-12 md:grid-cols-2">
         {
           tree.map((section) => (
             <li>
               <a href={wikiUrl(section.entry)} class="group block">
-                <h2 class="type-lead underline-offset-4 group-hover:underline">
+                <h3 class="type-lead underline-offset-4 group-hover:underline">
+                  {section.entry.data.icon && (
+                    <span aria-hidden="true" class="mr-2">{section.entry.data.icon}</span>
+                  )}
                   {section.entry.data.title}
-                </h2>
+                </h3>
                 <p class="mt-2 opacity-80">{section.entry.data.description}</p>
               </a>
 

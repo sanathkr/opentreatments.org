@@ -1,6 +1,7 @@
 ---
 title: "Vision, Mission & Strategy"
 description: "The vision, mission, guiding tenets and strategy behind OpenTreatments Connect."
+icon: "🤔"
 order: 1
 ---
 ## Vision

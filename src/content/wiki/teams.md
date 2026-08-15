@@ -1,6 +1,7 @@
 ---
 title: "Teams"
 description: "How the Connect product development group is organised."
+icon: "🕹️"
 order: 4
 ---
 Welcome to OpenTreatments Connect development teams Wiki. In this document, you will find information about our team’s culture, development processes, and deep dive topics covered by each of the team.

@@ -1,6 +1,7 @@
 ---
 title: "Culture"
 description: "Core values, working style and the processes that hold the team together."
+icon: "🎐"
 order: 3
 ---
 OpenTreatments Connect has a very unique culture that is built to fit the core tenets of the product.

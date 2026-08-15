@@ -1,6 +1,7 @@
 ---
 title: "Roadmap"
 description: "The direction Connect is headed, its current objective and milestones."
+icon: "🗺️"
 order: 2
 ---
 Roadmap defines the direction OpenTreatments Connect is headed towards. Objective defines a target we want to reach in a reasonable timeframe. Strategy defines how we plan to get there in plain language. Milestones and Tasks break down the Strategy into activities executed by an individual.

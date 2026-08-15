@@ -32,6 +32,7 @@ const linkClass = (id: string) =>
         <li class="mt-1">
           <a href={wikiUrl(section.entry)} class={linkClass(section.entry.id)}
              aria-current={section.entry.id === current ? 'page' : undefined}>
+            {section.entry.data.icon && <span aria-hidden="true" class="mr-1.5">{section.entry.data.icon}</span>}
             {section.entry.data.title}
           </a>
           {section.children.length > 0 && (

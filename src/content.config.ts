@@ -11,6 +11,8 @@ const wiki = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    /** Emoji shown beside the title, as the Notion pages had. */
+    icon: z.string().optional(),
     /** Sort order within its level. */
     order: z.number(),
     /** id of the parent page, for the nested team pages. */
